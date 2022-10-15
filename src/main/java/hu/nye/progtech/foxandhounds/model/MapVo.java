@@ -4,19 +4,18 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class MapVo {
-
     private final int numberOfRows;
     private final int numberOfColumns;
     private final int[][] values;
+    private final boolean[][] fixed;
+    private static final int foxMapValue = 4;
+    private static final int houndMapValue = 7;
 
-    public MapVo(int numberOfRows, int numberOfColumns, int[][] values) {
+    public MapVo(int numberOfRows, int numberOfColumns, int[][] values, boolean[][] fixed) {
         this.numberOfRows = numberOfRows;
         this.numberOfColumns = numberOfColumns;
         this.values = deepCopy(values);
-    }
-
-    public int getNumberOfRows() {
-        return numberOfRows;
+        this.fixed = fixed;
     }
 
     public int getNumberOfColumns() {
@@ -27,6 +26,15 @@ public class MapVo {
         return deepCopy(values);
     }
 
+    public int getNumberOfRows() {return numberOfRows;}
+
+    public int getFoxMapValue() {
+        return foxMapValue;
+    }
+
+    public int getHoundMapValue() {
+        return houndMapValue;
+    }
     private int[][] deepCopy(int[][] array) {
         int[][] result = null;
 

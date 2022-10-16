@@ -1,0 +1,44 @@
+2022-10-15 20:09:38.666 [main] ERROR h.n.p.f.service.map.MapReaderFacade - Failed to read map
+hu.nye.progtech.foxandhounds.service.exception.MapReadException: Number of rows are incorrect
+	at hu.nye.progtech.foxandhounds.service.map.parser.MapParser.checknumberOfRows(MapParser.java:57)
+	at hu.nye.progtech.foxandhounds.service.map.parser.MapParser.parse(MapParser.java:19)
+	at hu.nye.progtech.foxandhounds.service.map.MapReaderFacade.readMap(MapReaderFacade.java:33)
+	at hu.nye.progtech.foxandhounds.Main.main(Main.java:35)
+2022-10-15 22:30:07.100 [main] ERROR h.n.p.f.service.map.MapReaderFacade - Failed to read map
+hu.nye.progtech.foxandhounds.service.exception.MapReadException: Number of rows are incorrect
+	at hu.nye.progtech.foxandhounds.service.map.parser.MapParser.checknumberOfRows(MapParser.java:59)
+	at hu.nye.progtech.foxandhounds.service.map.parser.MapParser.parse(MapParser.java:19)
+	at hu.nye.progtech.foxandhounds.service.map.MapReaderFacade.readMap(MapReaderFacade.java:31)
+	at hu.nye.progtech.foxandhounds.Main.main(Main.java:31)
+2022-10-16 00:32:55.825 [main] INFO  h.n.p.f.s.command.impl.PrintCommand - Printing
+2022-10-16 00:39:35.440 [main] INFO  h.n.p.f.s.command.impl.PrintCommand - Exit flax will be true
+2022-10-16 01:04:46.618 [main] INFO  h.n.p.foxandhounds.ui.MapPrinter - Printing map to stdout
+2022-10-16 01:05:30.932 [main] INFO  h.n.p.f.s.command.impl.PrintCommand - Exit flag will be true
+2022-10-16 01:10:38.653 [main] INFO  h.n.p.foxandhounds.ui.MapPrinter - Printing map to stdout
+2022-10-16 02:01:39.048 [main] INFO  h.n.p.foxandhounds.ui.MapPrinter - Printing map to stdout
+2022-10-16 02:01:44.073 [main] INFO  h.n.p.f.s.command.impl.PrintCommand - Exit flag will be true
+2022-10-16 02:08:16.658 [main] INFO  h.n.p.foxandhounds.ui.MapPrinter - Printing map to stdout
+2022-10-16 02:08:56.025 [main] INFO  h.n.p.f.s.command.impl.PrintCommand - Exit flag will be true
+2022-10-16 02:12:09.771 [main] INFO  h.n.p.foxandhounds.ui.MapPrinter - Printing map to stdout
+2022-10-16 02:13:01.834 [main] INFO  h.n.p.foxandhounds.ui.MapPrinter - Printing map to stdout
+2022-10-16 02:13:30.652 [main] INFO  h.n.p.foxandhounds.ui.MapPrinter - Printing map to stdout
+2022-10-16 02:16:25.998 [main] INFO  h.n.p.foxandhounds.ui.MapPrinter - Printing map to stdout
+2022-10-16 16:45:08.135 [main] INFO  h.n.p.foxandhounds.ui.MapPrinter - Printing map to stdout
+2022-10-16 16:45:12.736 [main] INFO  h.n.p.f.s.command.impl.PrintCommand - Exit flag will be true
+2022-10-16 16:59:16.090 [main] INFO  h.n.p.f.s.command.impl.PrintCommand - Exit flag will be true
+2022-10-16 16:59:53.747 [main] INFO  h.n.p.foxandhounds.ui.MapPrinter - Printing map to stdout
+2022-10-16 16:59:56.141 [main] INFO  h.n.p.f.s.command.impl.PrintCommand - Exit flag will be true
+2022-10-16 17:00:14.983 [main] INFO  h.n.p.foxandhounds.ui.MapPrinter - Printing map to stdout
+2022-10-16 17:00:21.311 [main] INFO  h.n.p.f.s.command.impl.PrintCommand - Exit flag will be true
+2022-10-16 17:01:06.940 [main] INFO  h.n.p.foxandhounds.ui.MapPrinter - Printing map to stdout
+2022-10-16 17:01:11.657 [main] INFO  h.n.p.f.s.command.impl.PrintCommand - Exit flag will be true
+2022-10-16 17:16:40.340 [main] INFO  h.n.p.foxandhounds.ui.MapPrinter - Printing map to stdout
+2022-10-16 17:16:45.754 [main] INFO  h.n.p.f.s.command.impl.PrintCommand - Exit flag will be true
+2022-10-16 17:35:19.766 [main] INFO  h.n.p.foxandhounds.ui.MapPrinter - Printing map to stdout
+2022-10-16 17:35:24.003 [main] INFO  h.n.p.f.s.command.impl.PrintCommand - Exit flag will be true
+2022-10-16 18:12:53.359 [main] INFO  h.n.p.foxandhounds.ui.MapPrinter - Printing map to stdout
+2022-10-16 19:12:43.651 [main] INFO  h.n.p.foxandhounds.ui.MapPrinter - Printing map to stdout
+2022-10-16 20:48:18.101 [main] INFO  h.n.p.foxandhounds.ui.MapPrinter - Printing map to stdout
+2022-10-16 20:48:21.742 [main] INFO  h.n.p.f.s.command.impl.PrintCommand - Exit flag will be true
+2022-10-16 21:51:29.498 [main] INFO  h.n.p.foxandhounds.ui.MapPrinter - Printing map to stdout
+2022-10-16 21:51:33.395 [main] INFO  h.n.p.f.s.command.impl.PrintCommand - Exit flag will be true

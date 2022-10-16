@@ -3,19 +3,20 @@ package hu.nye.progtech.foxandhounds.model;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * Model class for representing the game's map.
+ */
 public class MapVo {
     private final int numberOfRows;
     private final int numberOfColumns;
     private final int[][] values;
-    private final boolean[][] fixed;
     private static final int foxMapValue = 4;
     private static final int houndMapValue = 7;
 
-    public MapVo(int numberOfRows, int numberOfColumns, int[][] values, boolean[][] fixed) {
+    public MapVo(int numberOfRows, int numberOfColumns, int[][] values) {
         this.numberOfRows = numberOfRows;
         this.numberOfColumns = numberOfColumns;
         this.values = deepCopy(values);
-        this.fixed = fixed;
     }
 
     public int getNumberOfColumns() {
@@ -26,7 +27,9 @@ public class MapVo {
         return deepCopy(values);
     }
 
-    public int getNumberOfRows() {return numberOfRows;}
+    public int getNumberOfRows() {
+        return numberOfRows;
+    }
 
     public int getFoxMapValue() {
         return foxMapValue;
@@ -35,6 +38,7 @@ public class MapVo {
     public int getHoundMapValue() {
         return houndMapValue;
     }
+
     private int[][] deepCopy(int[][] array) {
         int[][] result = null;
 
@@ -50,8 +54,12 @@ public class MapVo {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         MapVo mapVo = (MapVo) o;
         return numberOfRows == mapVo.numberOfRows && numberOfColumns == mapVo.numberOfColumns && Arrays.deepEquals(values, mapVo.values);
     }

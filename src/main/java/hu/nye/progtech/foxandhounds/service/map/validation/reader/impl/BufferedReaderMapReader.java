@@ -1,13 +1,16 @@
-package hu.nye.progtech.foxandhounds.service.map.reader.impl;
-
-import hu.nye.progtech.foxandhounds.service.exception.MapReadException;
-import hu.nye.progtech.foxandhounds.service.map.reader.MapReader;
+package hu.nye.progtech.foxandhounds.service.map.validation.reader.impl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import hu.nye.progtech.foxandhounds.service.exception.MapReadException;
+import hu.nye.progtech.foxandhounds.service.map.validation.reader.MapReader;
+
+/**
+ * It reads the raw representation of a map.
+ */
 public class BufferedReaderMapReader implements MapReader {
 
     private final BufferedReader reader;
@@ -27,8 +30,8 @@ public class BufferedReaderMapReader implements MapReader {
                 result.add(line);
             }
         } catch (IOException e) {
-                throw new MapReadException("Failed to read map");
-            }
+            throw new MapReadException("Failed to read map");
+        }
         return result;
     }
 }

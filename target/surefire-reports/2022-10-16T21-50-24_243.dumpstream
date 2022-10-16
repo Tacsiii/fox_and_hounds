@@ -1,0 +1,4 @@
+# Created at 2022-10-16T21:50:30.747
+Boot Manifest-JAR contains absolute paths in classpath 'D:\Progtech\1_beadando\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+

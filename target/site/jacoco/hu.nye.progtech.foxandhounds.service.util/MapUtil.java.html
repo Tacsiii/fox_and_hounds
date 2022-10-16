@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MapUtil.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">foxandhounds</a> &gt; <a href="index.source.html" class="el_package">hu.nye.progtech.foxandhounds.service.util</a> &gt; <span class="el_source">MapUtil.java</span></div><h1>MapUtil.java</h1><pre class="source lang-java linenums">package hu.nye.progtech.foxandhounds.service.util;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import hu.nye.progtech.foxandhounds.model.MapVo;
+
+/**
+ * Class that gives certain informations about map.
+ */
+<span class="nc" id="L11">public class MapUtil {</span>
+
+    /**
+     * Gets the number of rows of a map.
+     */
+    public List&lt;Integer&gt; getRowOfMap(MapVo mapVo, int rowIndex) {
+<span class="nc" id="L17">        List&lt;Integer&gt; result = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L19">        int[][] map = mapVo.getValues();</span>
+<span class="nc bnc" id="L20" title="All 2 branches missed.">        for (int i = 0; i &lt; mapVo.getNumberOfColumns(); i++) {</span>
+<span class="nc" id="L21">            result.add(map[rowIndex][i]);</span>
+        }
+
+<span class="nc" id="L24">        return result;</span>
+    }
+
+    /**
+     * Gets the number of columns of a map.
+     */
+
+    public List&lt;Integer&gt; getColumnOfMap(MapVo mapVo, int columnIndex) {
+<span class="nc" id="L32">        List&lt;Integer&gt; result = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L34">        int[][] map = mapVo.getValues();</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        for (int i = 0; i &lt; mapVo.getNumberOfRows(); i++) {</span>
+<span class="nc" id="L36">            result.add(map[i][columnIndex]);</span>
+        }
+
+<span class="nc" id="L39">        return result;</span>
+    }
+
+    /**
+     * Checks if the fox is at the top row.
+     */
+    public boolean isMapCompleted(MapVo mapVo) {
+<span class="nc" id="L46">        boolean result = true;</span>
+
+<span class="nc" id="L48">        int[][] map = mapVo.getValues();</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        for (int i = 0; i &lt; mapVo.getNumberOfColumns(); i++) {</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            if (map[0][i] != mapVo.getFoxMapValue()) {</span>
+<span class="nc" id="L51">                result = false;</span>
+<span class="nc" id="L52">                break;</span>
+            }
+        }
+
+<span class="nc" id="L56">        return result;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MapPrinter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">foxandhounds</a> &gt; <a href="index.source.html" class="el_package">hu.nye.progtech.foxandhounds.ui</a> &gt; <span class="el_source">MapPrinter.java</span></div><h1>MapPrinter.java</h1><pre class="source lang-java linenums">package hu.nye.progtech.foxandhounds.ui;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import hu.nye.progtech.foxandhounds.model.MapVo;
+import hu.nye.progtech.foxandhounds.service.util.MapUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+    /**
+     * Class that prints out the current game state with separators.
+     */
+    public class MapPrinter {
+
+<span class="nc" id="L17">    private static final Logger LOGGER = LoggerFactory.getLogger(MapPrinter.class);</span>
+
+    private static final String HORIZONTAL_SEPARATOR = &quot;=&quot;;
+    private static final String VERTICAL_THIN_SEPARATOR = &quot; | &quot;;
+    private static final String VERTICAL_THICK_SEPARATOR = &quot; || &quot;;
+    private static final String LEFT_SIDE_VERTICAL_THICK_SEPARATOR = &quot;|| &quot;;
+    private static final String RIGHT_SIDE_VERTICAL_THICK_SEPARATOR = &quot; ||&quot;;
+
+    private final int boxWidth;
+    private final int boxHeight;
+    private final MapUtil mapUtil;
+    private final PrintWrapper printWrapper;
+
+<span class="nc" id="L30">    public MapPrinter(int boxWidth, int boxHeight, MapUtil mapUtil, PrintWrapper printWrapper) {</span>
+<span class="nc" id="L31">        this.boxWidth = boxWidth;</span>
+<span class="nc" id="L32">        this.boxHeight = boxHeight;</span>
+<span class="nc" id="L33">        this.mapUtil = mapUtil;</span>
+<span class="nc" id="L34">        this.printWrapper = printWrapper;</span>
+<span class="nc" id="L35">    }</span>
+
+    /**
+     * Prints the provided map to the standard output with separators.
+     */
+    public void printMap(MapVo mapVo) {
+<span class="nc" id="L41">        LOGGER.info(&quot;Printing map to stdout&quot;);</span>
+<span class="nc" id="L42">        printWrapper.printLine((getSeparator(HORIZONTAL_SEPARATOR, getSeparatorWidth(mapVo))));</span>
+
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        for (int rowIndex = 0; rowIndex &lt; mapVo.getNumberOfRows(); rowIndex++) {</span>
+<span class="nc" id="L45">            String rowToPrint = getRowToPrint(mapVo, rowIndex);</span>
+<span class="nc" id="L46">            printWrapper.printLine(rowToPrint);</span>
+
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            if (shouldPrintHorizontalSeparator(rowIndex)) {</span>
+<span class="nc" id="L49">                printWrapper.printLine((getSeparator(HORIZONTAL_SEPARATOR, getSeparatorWidth(mapVo))));</span>
+            }
+        }
+<span class="nc" id="L52">    }</span>
+
+    private String getRowToPrint(MapVo mapVo, int rowIndex) {
+<span class="nc" id="L55">        List&lt;String&gt; row = getRowAsStringList(mapVo, rowIndex);</span>
+<span class="nc" id="L56">        List&lt;List&lt;String&gt;&gt; boxPartsList = getBoxPartsOfRow(row);</span>
+<span class="nc" id="L57">        List&lt;String&gt; boxParts = joinBoxParts(boxPartsList);</span>
+
+<span class="nc" id="L59">        return LEFT_SIDE_VERTICAL_THICK_SEPARATOR + String.join(VERTICAL_THICK_SEPARATOR, boxParts) + RIGHT_SIDE_VERTICAL_THICK_SEPARATOR;</span>
+    }
+
+    private List&lt;String&gt; getRowAsStringList(MapVo mapVo, int rowIndex) {
+<span class="nc" id="L63">        return mapUtil.getRowOfMap(mapVo, rowIndex).stream()</span>
+<span class="nc" id="L64">                .map(this::valueToString)</span>
+<span class="nc" id="L65">                .collect(Collectors.toList());</span>
+    }
+
+    private List&lt;List&lt;String&gt;&gt; getBoxPartsOfRow(List&lt;String&gt; row) {
+<span class="nc" id="L69">        List&lt;List&lt;String&gt;&gt; boxParts = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L70">        List&lt;String&gt; currentBox = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L72" title="All 2 branches missed.">        for (String s : row) {</span>
+<span class="nc" id="L73">            currentBox.add(s);</span>
+
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            if (currentBox.size() == boxWidth) {</span>
+<span class="nc" id="L76">                boxParts.add(currentBox);</span>
+<span class="nc" id="L77">                currentBox = new ArrayList&lt;&gt;();</span>
+            }
+<span class="nc" id="L79">        }</span>
+
+<span class="nc bnc" id="L81" title="All 2 branches missed.">        if (!currentBox.isEmpty()) {</span>
+<span class="nc" id="L82">            boxParts.add(currentBox);</span>
+        }
+
+<span class="nc" id="L85">        return boxParts;</span>
+    }
+
+    private List&lt;String&gt; joinBoxParts(List&lt;List&lt;String&gt;&gt; boxPartsList) {
+<span class="nc" id="L89">        return boxPartsList.stream()</span>
+<span class="nc" id="L90">                .map(strings -&gt; String.join(VERTICAL_THIN_SEPARATOR, strings))</span>
+<span class="nc" id="L91">                .collect(Collectors.toList());</span>
+    }
+
+    private String getSeparator(String separatorCharacter, int times) {
+<span class="nc" id="L95">        List&lt;String&gt; separators = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">        for (int i = 0; i &lt; times; i++) {</span>
+<span class="nc" id="L97">            separators.add(separatorCharacter);</span>
+        }
+<span class="nc" id="L99">        return String.join(&quot;&quot;, separators);</span>
+    }
+
+    private String valueToString(int value) {
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        return value == 0 ? &quot; &quot; : String.valueOf(value);</span>
+    }
+
+    private boolean shouldPrintHorizontalSeparator(int rowIndex) {
+<span class="nc bnc" id="L107" title="All 2 branches missed.">        return (rowIndex + 1) % boxHeight == 0;</span>
+    }
+
+    private int getSeparatorWidth(MapVo mapVo) {
+<span class="nc" id="L111">        int numberOfBoxes = mapVo.getNumberOfColumns() / boxWidth;</span>
+<span class="nc" id="L112">        return (boxWidth * 3 + (boxWidth - 1)) * numberOfBoxes + (numberOfBoxes - 1) * 2 + 4;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

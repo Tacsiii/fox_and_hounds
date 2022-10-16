@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MapValidatorComposer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">foxandhounds</a> &gt; <a href="index.source.html" class="el_package">hu.nye.progtech.foxandhounds.service.map.validation.impl</a> &gt; <span class="el_source">MapValidatorComposer.java</span></div><h1>MapValidatorComposer.java</h1><pre class="source lang-java linenums">package hu.nye.progtech.foxandhounds.service.map.validation.impl;
+
+import java.util.List;
+
+import hu.nye.progtech.foxandhounds.model.MapVo;
+import hu.nye.progtech.foxandhounds.service.exception.MapValidationException;
+import hu.nye.progtech.foxandhounds.service.map.validation.MapValidator;
+
+/**
+ * Composes a validation list from different validators.
+ */
+
+public class MapValidatorComposer implements MapValidator {
+
+    private final List&lt;MapValidator&gt; mapValidatorList;
+
+<span class="nc" id="L17">    public MapValidatorComposer(List&lt;MapValidator&gt; mapValidatorList) {</span>
+<span class="nc" id="L18">        this.mapValidatorList = mapValidatorList;</span>
+<span class="nc" id="L19">    }</span>
+
+    @Override
+    public void validate(MapVo mapVo) throws MapValidationException {
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        for (MapValidator mapValidator : mapValidatorList) {</span>
+<span class="nc" id="L24">            mapValidator.validate(mapVo);</span>
+<span class="nc" id="L25">        }</span>
+
+<span class="nc" id="L27">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

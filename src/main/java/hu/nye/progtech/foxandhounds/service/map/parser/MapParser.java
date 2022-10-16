@@ -1,9 +1,13 @@
 package hu.nye.progtech.foxandhounds.service.map.parser;
 
-import hu.nye.progtech.foxandhounds.model.MapVo;
-
-import java.util.Arrays;
 import java.util.List;
+
+import hu.nye.progtech.foxandhounds.model.MapVo;
+import hu.nye.progtech.foxandhounds.service.exception.MapReadException;
+
+/**
+ * Parses the copy of a raw map into a MapVo object.
+ */
 
 public class MapParser {
 
@@ -15,22 +19,28 @@ public class MapParser {
         this.numberOfColumns = numberOfColumns;
     }
 
-    public MapVo parse(List<String> rawMap){
-       int[][] values = getValues(rawMap);
+    /**
+     * Separates the maps' units.
+     */
+    public MapVo parse(List<String> rawMap) {
+        checknumberOfRows(rawMap);
+
+        int[][] values = getValues(rawMap);
 
 
         return new MapVo(numberOfRows, numberOfColumns, values);
     }
-    private int[][] getValues(List<String> rawMap){
+
+    private int[][] getValues(List<String> rawMap) {
         int[][] result = new int[numberOfRows][];
 
-        for (int i = 0 ; i < numberOfRows; i++) {
+        for (int i = 0; i < numberOfRows; i++) {
             result[i] = new int[numberOfColumns];
 
             String row = rawMap.get(i);
             String[] numbersAsString = row.split("");
 
-            for (int j = 0; j < numberOfColumns; j++){
+            for (int j = 0; j < numberOfColumns; j++) {
                 int n = Integer.parseInt(numbersAsString[j]);
                 result[i][j] = n;
             }
@@ -38,4 +48,11 @@ public class MapParser {
 
         return result;
     }
+
+    private void checknumberOfRows(List<String> rawMap) {
+        if (rawMap.size() != numberOfRows) {
+            throw new MapReadException("Number of rows are incorrect");
+        }
+    }
+
 }
